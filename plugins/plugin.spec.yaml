@@ -35,11 +35,11 @@ connection:
 types:
 #TODO / DONE (I think)
   model:
-    ID:
+    id:
       type: integer
       description: Unique ID of the destination list
       required: true
-    organizationID:
+    organizationId:
       type: integer
       description: ID of org, e.g. 2345678
       required: true
@@ -107,9 +107,57 @@ types:
       description: e.g. Added new destination list
       required: false
 
+actions:
+#TODO
+  destinationLists:
+    title: Destination Lists Lookup
+    description: Retrieve all destination lists of organization
+    input:
+      organizationId:
+        title: Organization Destination List Lookup
+        description: Organization to lookup
+        type: integer
+        required: true
+    output:
+#      TODO - Map sample response to output field
+#      TODO = Is required, required?
+      id:
+        title: Id
+        description: Unique ID
+        type: integer
+      organizationId:
+        title: Org Id
+        description: Unique organization ID
+        type: integer
+      access:
+        title: Access
+        description: String value for is access allowed
+        type: string
+      isGlobal:
+        title: isGlobal
+        description: ??? #TODO
+        type: boolean
+      name:
+        
+#      {
+#        "id": 1234567,
+#        "organizationId": 2345678,
+#        "access": "allow",
+#        "isGlobal": true,
+#        "name": "Global Allow List",
+#        "thirdpartyCategoryId": 0,
+#        "createdAt": 1490206249,
+#        "modifiedAt": 1520476127,
+#        "isMspDefault": false,
+#        "markedForDeletion": false,
+#        "meta": {
+#          "destinationCount": 5,
+#          "domainCount": 5,
+#          "urlCount": 0,
+#          "ipv4Count": 0
+#        }
+#      }
 
 triggers:
 #TODO
 
-actions:
-#TODO
