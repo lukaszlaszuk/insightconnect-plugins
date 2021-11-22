@@ -1,0 +1,115 @@
+plugin_spec_version: v2
+extension: plugin
+products: [insightconnect]
+name: cisco_umbrella_destinations
+title: Cisco Umbrella Destinations
+version: 1.0.0
+#TODO
+#description: This plugin utilizes Cisco Umbrella to get the most complete view of the relationships
+#  and evolution of Internet domains, IP addresses, and autonomous systems to pinpoint
+#  attackers infrastructures and predict future threats
+vendor: rapid7
+support: rapid7
+status: []
+resources:
+  source_url: https://github.com/rapid7/insightconnect-plugins/tree/master/plugins/cisco_umbrella_destinations
+  license_url: https://github.com/rapid7/insightconnect-plugins/blob/master/LICENSE
+  vendor_url: https://www.cisco.com
+tags:
+- cisco
+- umbrella
+- destinations
+hub_tags:
+  #TODO
+#  use_cases: [threat_detection_and_response]
+  keywords: [cisco, umbrella, destinations]
+  features: []
+connection:
+  api_key:
+    title: API Key
+    type: credential_secret_key
+    description: Enter API key e.g. 1452d258-7c12-7c12-7c12-1452d25874c2
+    required: true
+    example: 1452d258-7c12-7c12-7c12-1452d25874c2
+
+types:
+#TODO / DONE (I think)
+  model:
+    ID:
+      type: integer
+      description: Unique ID of the destination list
+      required: true
+    organizationID:
+      type: integer
+      description: ID of org, e.g. 2345678
+      required: true
+    access:
+      type: string
+      description: Access can be allow or block. It defines destinationList type, e.g. allow
+      required: true
+    isGlobal:
+      type: boolean
+      description: isGlobal can be true or false.
+      There is only one default destination list of type allow or block for an organization.
+      required: true
+    name:
+      type: string
+      description: Name of destination list. e.g. Global Allow List
+      required: true
+    thirdpartyCategoryID:
+      type: integer
+      description: e.g. 0
+      required: true
+    createdAt:
+      type: integer
+      description: e.g. 1490206249
+      required: true
+    modifiedAt:
+      type: integer
+      description: e.g. 1520476127
+      required: true
+    isMspDefault:
+      type: boolean
+      description: e.g. true/false
+      required: true
+    markedForDeletion:
+      type: boolean
+      description: e.g. true/false
+      required: true
+  meta:
+  #TODO Is required 'required' for all these / doubtful
+    destinationCount:
+      type: integer
+      description: Total number of destinations in a destination list.
+      required: false
+    domainCount:
+      type: integer
+      description: Total number of domains in a destination list. Domains are part of total destinations in a destination lists.
+      required: false
+    urlCount:
+      type: integer
+      description: Total number of Urls in a destination list. Urls are part of total destinations in a destination lists.
+      required: false
+    ipv4Count:
+      type: integer
+      description: Total number of Ip's in a destination list. Ip's are part of total destinations in a destination lists.
+  destinations:
+    destination:
+      type: string
+      description: Destination can be domain, url or ip | e.g. <domain_name>
+      required: true
+    type:
+      type: string
+      description: Type can be DOMAIN, URL, IPV4 | e.g. DOMAIN
+      required: true
+    comment:
+      type: string
+      description: e.g. Added new destination list
+      required: false
+
+
+triggers:
+#TODO
+
+actions:
+#TODO
