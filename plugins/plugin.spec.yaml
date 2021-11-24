@@ -51,106 +51,6 @@ types:
       type: integer
       description: Total number of Ip's in a destination list. Ip's are part of total destinations in a destination lists.
       required: true
-
-  DLCollection:
-    id:
-      title: ID
-      description: Unique id of the destination list.
-      type: integer
-      required: true
-    organizationId:
-      title: Organization Id
-      description: ID of org, e.g. 2345678
-      type: integer
-      required: true
-    access:
-      title: Access
-      description: Access can be allow or block. It defines destinationList type, e.g. allow
-      type: string
-      required: true
-    isGlobal:
-      title: Is Global
-      description: isGlobal can be true or false. There is only one default destination list of type allow or block for an organization.
-      type: boolean
-      required: true
-    name:
-      title: Name
-      description: Name of the DL list
-      type: string
-      required: true
-    thirdpartyCategoryId:
-      title: Third Party Category Id
-      description: example, 0
-      type: integer
-      required: true
-    createdAt:
-      title: Created At
-      description: example, 1490206249
-      type: integer
-      required: true
-    modifiedAt:
-      title: Modified At
-      description: example, 1490206249
-      type: integer
-      required: true
-    isMspDefault:
-      title: Is MSP Default
-      description: example, false
-      type: boolean
-      required: true
-    markedForDeletion:
-      title: Marked For Deletion
-      description: example, false
-      type: boolean
-      required: true
-    meta:
-      title: Meta Data
-      description: None
-      type: '[]meta'
-      required: false
-
-  model:
-    id:
-      type: integer
-      description: Unique ID of the destination list
-      required: true
-    organizationId:
-      type: integer
-      description: ID of org, e.g. 2345678
-      required: true
-    access:
-      type: string
-      description: Access can be allow or block. It defines destinationList type, e.g. allow
-      required: true
-    isGlobal:
-      type: boolean
-      description: isGlobal can be true or false.
-      There is only one default destination list of type allow or block for an organization.
-      required: true
-    name:
-      type: string
-      description: Name of destination list. e.g. Global Allow List
-      required: true
-    thirdpartyCategoryID:
-      type: integer
-      description: e.g. 0
-      required: true
-    createdAt:
-      type: integer
-      description: e.g. 1490206249
-      required: true
-    modifiedAt:
-      type: integer
-      description: e.g. 1520476127
-      required: true
-    isMspDefault:
-      type: boolean
-      description: e.g. true/false
-      required: true
-    markedForDeletion:
-      type: boolean
-      description: e.g. true/false
-      required: true
   destinations:
     destination:
       type: string
@@ -164,6 +64,308 @@ types:
       type: string
       description: e.g. Added new destination list
       required: false
+
+  dResponse:
+    id:
+      title: ID
+      description: Unique id of the destination list.
+      type: integer
+      required: false
+    organizationId:
+      title: Organization Id
+      description: ID of org, e.g. 2345678
+      type: integer
+      required: false
+    access:
+      title: Access
+      description: Access can be allow or block. It defines destinationList type, e.g. allow
+      type: string
+      required: false
+    isGlobal:
+      title: Is Global
+      description: isGlobal can be true or false. There is only one default destination list of type allow or block for an organization.
+      type: boolean
+      required: false
+    name:
+      title: Name
+      description: Name of the DL list
+      type: string
+      required: false
+    thirdpartyCategoryId:
+      title: Third Party Category Id
+      description: example, 0
+      type: integer
+      required: false
+    createdAt:
+      title: Created At
+      description: example, 1490206249
+      type: integer
+      required: false
+    modifiedAt:
+      title: Modified At
+      description: example, 1490206249
+      type: integer
+      required: false
+    isMspDefault:
+      title: Is MSP Default
+      description: example, false
+      type: boolean
+      required: false
+    markedForDeletion:
+      title: Marked For Deletion
+      description: example, false
+      type: boolean
+      required: false
+    meta:
+      title: Meta Data
+      description: None
+      type: '[]meta'
+      required: false
+  dlCollection:
+    name: Destination List Collection
+    description: Collection of destination lists
+    type: '[]dlCollection'
+    #TODO Review this ^^ .. so confusing
+      id:
+        title: ID
+        description: Unique id of the destination list.
+        type: integer
+        required: true
+      organizationId:
+        title: Organization Id
+        description: ID of org, e.g. 2345678
+        type: integer
+        required: true
+      access:
+        title: Access
+        description: Access can be allow or block. It defines destinationList type, e.g. allow
+        type: string
+        required: true
+      isGlobal:
+        title: Is Global
+        description: isGlobal can be true or false. There is only one default destination list of type allow or block for an organization.
+        type: boolean
+        required: true
+      name:
+        title: Name
+        description: Name of the DL list
+        type: string
+        required: true
+      thirdpartyCategoryId:
+        title: Third Party Category Id
+        description: example, 0
+        type: integer
+        required: true
+      createdAt:
+        title: Created At
+        description: example, 1490206249
+        type: integer
+        required: true
+      modifiedAt:
+        title: Modified At
+        description: example, 1490206249
+        type: integer
+        required: true
+      isMspDefault:
+        title: Is MSP Default
+        description: example, false
+        type: boolean
+        required: true
+      markedForDeletion:
+        title: Marked For Deletion
+        description: example, false
+        type: boolean
+        required: true
+      meta:
+        title: Meta Data
+        description: None
+        type: '[]meta'
+        required: false
+  dlCreate:
+    access:
+      name: Access
+      description: Access can be allow or block. It defines destinationlist type.
+      type: string
+      required: true
+    isGlobal:
+      name: Is Global
+      description: isGlobal can be true or false. There is only one default destination list of type allow or block for an organization.
+      type: boolean
+      required: true
+    name:
+      name: Name
+      description: example, New Destination List
+      type: string
+      required: true
+    destinations:
+      name: Destinations
+      description: Destinations to add to new list
+      type: '[]destinations'
+      required: false
+  dlPatch:
+    name:
+      name: Name
+      description: Name of the destination list
+      type: string
+      required: true
+  destinationsList:
+    destination:
+      name: Destination Name
+      description: Name of the destination
+      type: string
+      required: true
+    comment:
+      name: Comment
+      description: Comment for the destination
+      type: string
+      required: false
+  destinationsIdsList:
+    name: Destinations Ids List
+    description: example, 1234
+    type: '[]integer'
+    required: false
+  dlEntity:
+    id:
+      title: ID
+      description: Unique id of the destination list.
+      type: integer
+      required: false
+    organizationId:
+      title: Organization Id
+      description: ID of org, e.g. 2345678
+      type: integer
+      required: false
+    access:
+      title: Access
+      description: Access can be allow or block. It defines destinationList type, e.g. allow
+      type: string
+      required: false
+    isGlobal:
+      title: Is Global
+      description: isGlobal can be true or false. There is only one default destination list of type allow or block for an organization.
+      type: boolean
+      required: false
+    name:
+      title: Name
+      description: Name of the DL list
+      type: string
+      required: false
+    thirdpartyCategoryId:
+      title: Third Party Category Id
+      description: example, 0
+      type: integer
+      required: false
+    createdAt:
+      title: Created At
+      description: example, 1490206249
+      type: integer
+      required: false
+    modifiedAt:
+      title: Modified At
+      description: example, 1490206249
+      type: integer
+      required: false
+    isMspDefault:
+      title: Is MSP Default
+      description: example, false
+      type: boolean
+      required: false
+    markedForDeletion:
+      title: Marked For Deletion
+      description: example, false
+      type: boolean
+      required: false
+    meta:
+      title: Meta Data
+      description: None
+      type: '[]meta'
+      required: false
+  destinationList:
+    id:
+      title: ID
+      description: Unique id of the destination list.
+      type: integer
+      required: false
+    organizationId:
+      title: Organization Id
+      description: ID of org, e.g. 2345678
+      type: integer
+      required: false
+    access:
+      title: Access
+      description: Access can be allow or block. It defines destinationList type, e.g. allow
+      type: string
+      required: false
+    isGlobal:
+      title: Is Global
+      description: isGlobal can be true or false. There is only one default destination list of type allow or block for an organization.
+      type: boolean
+      required: false
+    name:
+      title: Name
+      description: Name of the DL list
+      type: string
+      required: false
+    thirdpartyCategoryId:
+      title: Third Party Category Id
+      description: example, 0
+      type: integer
+      required: false
+    createdAt:
+      title: Created At
+      description: example, 1490206249
+      type: integer
+      required: false
+    modifiedAt:
+      title: Modified At
+      description: example, 1490206249
+      type: integer
+      required: false
+    isMspDefault:
+      title: Is MSP Default
+      description: example, false
+      type: boolean
+      required: false
+    markedForDeletion:
+      title: Marked For Deletion
+      description: example, false
+      type: boolean
+      required: false
+  destinationsEntity:
+    name: Destinations Entity
+    description: None
+    type: '[]destinationsEntity'
+    id:
+      name: ID
+      description: Unique ID of the destination
+      type: string
+      required: false
+    destination:
+      name: Destination
+      description: Destination can be domain, url, ip
+      type: string
+      required: false
+    typeOf:
+      name: Type
+      description: Type can be DOMAIN, URL, IPV4
+      type: string
+      required: false
+    comment:
+      name: Comment
+      description: None
+      type: string
+      required: false
+    createdAt:
+      name: Created At
+      description: date and time it has been created at, e.g. example 2018-07-23 19:36:45
+      type: string #Docs say string, but should it be type(date)?
+  dlDelete:
+    name: Destination List Delete
+    description: None
+
+
+
+
 
 actions:
 #TODO
@@ -201,8 +403,6 @@ actions:
         required: true
 
     output:
-
-
 
 triggers:
 #TODO
