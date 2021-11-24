@@ -33,7 +33,6 @@ connection:
     example: 1452d258-7c12-7c12-7c12-1452d25874c2
 
 types:
-#TODO
   meta:
     destinationCount:
       type: integer
@@ -64,7 +63,6 @@ types:
       type: string
       description: e.g. Added new destination list
       required: false
-
   dResponse:
     id:
       title: ID
@@ -362,9 +360,6 @@ types:
   dlDelete:
     name: Destination List Delete
     description: None
-
-
-
 
 
 actions:
