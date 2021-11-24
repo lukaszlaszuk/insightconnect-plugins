@@ -33,7 +33,82 @@ connection:
     example: 1452d258-7c12-7c12-7c12-1452d25874c2
 
 types:
-#TODO / DONE (I think)
+#TODO
+  meta:
+    destinationCount:
+      type: integer
+      description: Total number of destinations in a destination list.
+      required: true
+    domainCount:
+      type: integer
+      description: Total number of domains in a destination list. Domains are part of total destinations in a destination lists.
+      required: true
+    urlCount:
+      type: integer
+      description: Total number of Urls in a destination list. Urls are part of total destinations in a destination lists.
+      required: true
+    ipv4Count:
+      type: integer
+      description: Total number of Ip's in a destination list. Ip's are part of total destinations in a destination lists.
+      required: true
+
+  DLCollection:
+    id:
+      title: ID
+      description: Unique id of the destination list.
+      type: integer
+      required: true
+    organizationId:
+      title: Organization Id
+      description: ID of org, e.g. 2345678
+      type: integer
+      required: true
+    access:
+      title: Access
+      description: Access can be allow or block. It defines destinationList type, e.g. allow
+      type: string
+      required: true
+    isGlobal:
+      title: Is Global
+      description: isGlobal can be true or false. There is only one default destination list of type allow or block for an organization.
+      type: boolean
+      required: true
+    name:
+      title: Name
+      description: Name of the DL list
+      type: string
+      required: true
+    thirdpartyCategoryId:
+      title: Third Party Category Id
+      description: example, 0
+      type: integer
+      required: true
+    createdAt:
+      title: Created At
+      description: example, 1490206249
+      type: integer
+      required: true
+    modifiedAt:
+      title: Modified At
+      description: example, 1490206249
+      type: integer
+      required: true
+    isMspDefault:
+      title: Is MSP Default
+      description: example, false
+      type: boolean
+      required: true
+    markedForDeletion:
+      title: Marked For Deletion
+      description: example, false
+      type: boolean
+      required: true
+    meta:
+      title: Meta Data
+      description: None
+      type: '[]meta'
+      required: false
+
   model:
     id:
       type: integer
@@ -76,24 +151,6 @@ types:
       type: boolean
       description: e.g. true/false
       required: true
-  meta:
-  #TODO Is required 'required' for all these / doubtful
-    destinationCount:
-      type: integer
-      description: Total number of destinations in a destination list.
-      required: true
-    domainCount:
-      type: integer
-      description: Total number of domains in a destination list. Domains are part of total destinations in a destination lists.
-      required: true
-    urlCount:
-      type: integer
-      description: Total number of Urls in a destination list. Urls are part of total destinations in a destination lists.
-      required: true
-    ipv4Count:
-      type: integer
-      description: Total number of Ip's in a destination list. Ip's are part of total destinations in a destination lists.
-      required: true
   destinations:
     destination:
       type: string
@@ -120,13 +177,10 @@ actions:
         type: integer
         required: true
     output:
-#      TODO - Map sample response to output field
-#      TODO - Is required, required?
       orgDestinationList:
         title: Organisation Destination List
         description: #TODO Fill in later
         type: '[]model'
-        #TODO Are these supposed to be seperate or together??
       meta:
         title: Meta data
         description: metadata for output
@@ -136,14 +190,14 @@ actions:
     description: POST request to create a new destination list
     input:
       organizationId:
-        title: Organization Destination List Lookup
-        description: Organization to lookup
+        title: Org ID
+        description: Org ID to associate with list
         type: integer
         required: true
       payload:
         title: List of destinations
         description: Payload object with destinations used to create
-        type: '[]string'
+        type:
         required: true
 
     output:
