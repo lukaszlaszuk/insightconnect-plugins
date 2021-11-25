@@ -31,25 +31,24 @@ connection:
     description: Enter API key e.g. 1452d258-7c12-7c12-7c12-1452d25874c2
     required: true
     example: 1452d258-7c12-7c12-7c12-1452d25874c2
-
 types:
   meta:
     destinationCount:
       type: integer
       description: Total number of destinations in a destination list.
-      required: true
+      required: false
     domainCount:
       type: integer
       description: Total number of domains in a destination list. Domains are part of total destinations in a destination lists.
-      required: true
+      required: false
     urlCount:
       type: integer
       description: Total number of Urls in a destination list. Urls are part of total destinations in a destination lists.
-      required: true
+      required: false
     ipv4Count:
       type: integer
       description: Total number of Ip's in a destination list. Ip's are part of total destinations in a destination lists.
-      required: true
+      required: false
   destinations:
     destination:
       type: string
@@ -361,43 +360,173 @@ types:
     name: Destination List Delete
     description: None
 
-
 actions:
 #TODO
-  get_destinationLists_forOrg:
-    title: Destination List lookup for org ID
-    description: Retrieve all destination lists of selected organization.
+  dlGetAll:
+    title: Destinations List GET (All)
+    description: Retrieve all destination lists of organisation
     input:
       organizationId:
-        title: Organization Destination List Lookup
-        description: Organization to lookup
+        title: Organization ID
+        description: Organisation ID
         type: integer
         required: true
     output:
-      orgDestinationList:
-        title: Organisation Destination List
-        description: #TODO Fill in later
-        type: '[]model'
-      meta:
-        title: Meta data
-        description: metadata for output
-        type: '[]meta'
-  create_destinationList:
-    title: Create a destination list
-    description: POST request to create a new destination list
+      success:
+        title: Success
+        type: '[]dlCollection'
+        required: true
+  dlCreate:
+    title: Destination Lists POST
+    description: Create a destination list
     input:
       organizationId:
-        title: Org ID
-        description: Org ID to associate with list
+        title: Organization ID
+        description: Organisation ID
         type: integer
         required: true
       payload:
-        title: List of destinations
-        description: Payload object with destinations used to create
-        type:
+        title: Payload
+        description: List of destinations
+        type: '[]dlCreate'
         required: true
-
     output:
+      success:
+        title: Success
+        type: '[]dlEntity'
+        required: true
+  dlPatch:
+    title: Destination Lists PATCH
+    description: Rename a destination list
+    input:
+      organizationId:
+        title: Organization ID
+        description: Organisation ID
+        type: integer
+        required: true
+      destinationListId:
+        title: Destination List ID
+        description: Unique ID for destination list
+        type: integer
+        required: true
+      payload:
+        title: Payload
+        description: value containing name to change to
+        type: '[]dlPatch'
+    output:
+      success:
+        title: Success
+        type: '[]dlEntity'
+        required: true
+  dlDelete:
+    title: Destination Lists DELETE
+    description: Delete a destination list
+    input:
+      organizationId:
+        title: Organization ID
+        description: Organisation ID
+        type: integer
+        required: true
+      destinationListId:
+        title: Destination List ID
+        description: Unique ID for destination list
+        type: integer
+        required: true
+    output:
+      success:
+        title: Success
+        type: '[]dlDelete'
+  dlGet:
+    title: Destination List GET
+    description: Return a destination list
+    input:
+      organizationId:
+        title: Organization ID
+        description: Organisation ID
+        type: integer
+        required: true
+      destinationListId:
+        title: Destination List ID
+        description: Unique ID for destination list
+        type: integer
+        required: true
+    output:
+      success:
+        title: Success
+        type: '[]destinationList'
+        required: true
+  dGet:
+    title: Destination GET
+    description: Get list of destinations related to destination list
+    input:
+      organizationId:
+        title: Organization ID
+        description: Organisation ID
+        type: integer
+        required: true
+      destinationListId:
+        title: Destination List ID
+        description: Unique ID for destination list
+        type: integer
+        required: true
+      page:
+        title: Page
+        description: Pagination
+        type: integer
+        required: false
+      limit:
+        title: Limit
+        description: Limit for page
+        type: integer
+        required: false
+    output:
+      success:
+        title: Success
+        type: '[]destinationsEntity'
+        required: true
+  dAdd:
+    title: Destination POST
+    description: Add list of destinations to destination list
+    input:
+      organizationId:
+        title: Organization ID
+        description: Organisation ID
+        type: integer
+        required: true
+      destinationListId:
+        title: Destination List ID
+        description: Unique ID for destination list
+        type: integer
+        required: true
+      payload:
+        title: Payload
+        description: List of destinations
+        type: '[]destinationsList'
+        required: true
+    output:
+      success:
+        title: Success
+        type: '[]dResponse'
+        required: true
+  dDelete:
+    title: Destination DELETE
+    description: Delete list of destinations from destination list
+    input:
+      organizationId:
+        title: Organization ID
+        description: Organisation ID
+        type: integer
+        required: true
+      destinationListId:
+        title: Destination List ID
+        description: Unique ID for destination list
+        type: integer
+        required: true
+      payload:
+        title: Payload
+        description: List of destinations
+        type: '[]destinationIdsList'
+        required: true
 
 triggers:
 #TODO
