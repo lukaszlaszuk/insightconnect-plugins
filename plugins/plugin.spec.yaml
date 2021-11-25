@@ -20,8 +20,7 @@ tags:
 - umbrella
 - destinations
 hub_tags:
-  #TODO
-#  use_cases: [threat_detection_and_response]
+  use_cases: [threat_detection_and_response]
   keywords: [cisco, umbrella, destinations]
   features: []
 connection:
@@ -359,9 +358,7 @@ types:
   dlDelete:
     name: Destination List Delete
     description: None
-
 actions:
-#TODO
   dlGetAll:
     title: Destinations List GET (All)
     description: Retrieve all destination lists of organisation
@@ -527,7 +524,3 @@ actions:
         description: List of destinations
         type: '[]destinationIdsList'
         required: true
-
-triggers:
-#TODO
-
