@@ -118,64 +118,61 @@ types:
       type: '[]meta'
       required: false
   dlCollection:
-    name: Destination List Collection
-    description: Collection of destination lists
-    type: '[]dlCollection'
-      id:
-        title: ID
-        description: Unique id of the destination list.
-        type: integer
-        required: true
-      organizationId:
-        title: Organization Id
-        description: ID of org, e.g. 2345678
-        type: integer
-        required: true
-      access:
-        title: Access
-        description: Access can be allow or block. It defines destinationList type, e.g. allow
-        type: string
-        required: true
-      isGlobal:
-        title: Is Global
-        description: isGlobal can be true or false. There is only one default destination list of type allow or block for an organization.
-        type: boolean
-        required: true
-      name:
-        title: Name
-        description: Name of the DL list
-        type: string
-        required: true
-      thirdpartyCategoryId:
-        title: Third Party Category Id
-        description: example, 0
-        type: integer
-        required: true
-      createdAt:
-        title: Created At
-        description: example, 1490206249
-        type: integer
-        required: true
-      modifiedAt:
-        title: Modified At
-        description: example, 1490206249
-        type: integer
-        required: true
-      isMspDefault:
-        title: Is MSP Default
-        description: example, false
-        type: boolean
-        required: true
-      markedForDeletion:
-        title: Marked For Deletion
-        description: example, false
-        type: boolean
-        required: true
-      meta:
-        title: Meta Data
-        description: None
-        type: '[]meta'
-        required: false
+    id:
+      title: ID
+      description: Unique id of the destination list.
+      type: integer
+      required: true
+    organizationId:
+      title: Organization Id
+      description: ID of org, e.g. 2345678
+      type: integer
+      required: true
+    access:
+      title: Access
+      description: Access can be allow or block. It defines destinationList type, e.g. allow
+      type: string
+      required: true
+    isGlobal:
+      title: Is Global
+      description: isGlobal can be true or false. There is only one default destination list of type allow or block for an organization.
+      type: boolean
+      required: true
+    name:
+      title: Name
+      description: Name of the DL list
+      type: string
+      required: true
+    thirdpartyCategoryId:
+      title: Third Party Category Id
+      description: example, 0
+      type: integer
+      required: true
+    createdAt:
+      title: Created At
+      description: example, 1490206249
+      type: integer
+      required: true
+    modifiedAt:
+      title: Modified At
+      description: example, 1490206249
+      type: integer
+      required: true
+    isMspDefault:
+      title: Is MSP Default
+      description: example, false
+      type: boolean
+      required: true
+    markedForDeletion:
+      title: Marked For Deletion
+      description: example, false
+      type: boolean
+      required: true
+    meta:
+      title: Meta Data
+      description: None
+      type: '[]meta'
+      required: false
   dlCreate:
     access:
       name: Access
@@ -215,10 +212,11 @@ types:
       type: string
       required: false
   destinationsIdsList:
-    name: Destinations Ids List
-    description: example, 1234
-    type: '[]integer'
-    required: false
+    id:
+      title: Destinations Ids List
+      description: example, 1234
+      type: integer
+      required: false
   dlEntity:
     id:
       title: ID
@@ -327,9 +325,6 @@ types:
       type: boolean
       required: false
   destinationsEntity:
-    name: Destinations Entity
-    description: None
-    type: '[]destinationsEntity'
     id:
       name: ID
       description: Unique ID of the destination
@@ -355,8 +350,11 @@ types:
       description: date and time it has been created at, e.g. example 2018-07-23 19:36:45
       type: string #Docs say string, but should it be type(date)?
   dlDelete:
-    name: Destination List Delete
-    description: None
+    delete:
+      name: Delete
+      description: Delete
+      type: string
+      required: false
 actions:
   dlGetAll:
     title: Destinations List GET (All)
@@ -370,7 +368,7 @@ actions:
     output:
       success:
         title: Success
-        type: '[]dlCollection'
+        type: "[]dlCollection"
         required: true
   dlCreate:
     title: Destination Lists POST
@@ -384,12 +382,12 @@ actions:
       payload:
         title: Payload
         description: List of destinations
-        type: '[]dlCreate'
+        type: "[]dlCreate"
         required: true
     output:
       success:
         title: Success
-        type: '[]dlEntity'
+        type: "[]dlEntity"
         required: true
   dlPatch:
     title: Destination Lists PATCH
@@ -408,11 +406,11 @@ actions:
       payload:
         title: Payload
         description: value containing name to change to
-        type: '[]dlPatch'
+        type: "[]dlPatch"
     output:
       success:
         title: Success
-        type: '[]dlEntity'
+        type: "[]dlEntity"
         required: true
   dlDelete:
     title: Destination Lists DELETE
@@ -431,7 +429,7 @@ actions:
     output:
       success:
         title: Success
-        type: '[]dlDelete'
+        type: "[]dlDelete"
   dlGet:
     title: Destination List GET
     description: Return a destination list
@@ -521,5 +519,5 @@ actions:
       payload:
         title: Payload
         description: List of destinations
-        type: '[]destinationIdsList'
+        type: "[]destinationsIdsList"
         required: true
