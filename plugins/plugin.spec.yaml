@@ -5,9 +5,9 @@ name: cisco_umbrella_destinations
 title: Cisco Umbrella Destinations
 version: 1.0.0
 #TODO
-#description: This plugin utilizes Cisco Umbrella to get the most complete view of the relationships
-#  and evolution of Internet domains, IP addresses, and autonomous systems to pinpoint
-#  attackers infrastructures and predict future threats
+description: This plugin utilizes Cisco Umbrella to get the most complete view of the relationships
+  and evolution of Internet domains, IP addresses, and autonomous systems to pinpoint
+  attackers infrastructures and predict future threats
 vendor: rapid7
 support: rapid7
 status: []
@@ -121,7 +121,6 @@ types:
     name: Destination List Collection
     description: Collection of destination lists
     type: '[]dlCollection'
-    #TODO Review this ^^ .. so confusing
       id:
         title: ID
         description: Unique id of the destination list.
