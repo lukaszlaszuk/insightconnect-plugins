@@ -4,7 +4,6 @@ products: [insightconnect]
 name: cisco_umbrella_destinations
 title: Cisco Umbrella Destinations
 version: 1.0.0
-#TODO
 description: This plugin utilizes Cisco Umbrella to get the most complete view of the relationships
   and evolution of Internet domains, IP addresses, and autonomous systems to pinpoint
   attackers infrastructures and predict future threats
@@ -29,7 +28,6 @@ connection:
     type: credential_secret_key
     description: Enter API key e.g. 1452d258-7c12-7c12-7c12-1452d25874c2
     required: true
-    example: 1452d258-7c12-7c12-7c12-1452d25874c2
 types:
   meta:
     destinationCount:
