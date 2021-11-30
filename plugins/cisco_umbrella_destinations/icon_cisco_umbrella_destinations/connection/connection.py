@@ -1,6 +1,4 @@
 import insightconnect_plugin_runtime
-import requests
-
 from .schema import ConnectionSchema, Input
 # Custom imports below
 
@@ -9,26 +7,20 @@ class Connection(insightconnect_plugin_runtime.Connection):
 
     def __init__(self):
         super(self.__class__, self).__init__(input=ConnectionSchema())
-        self.test_url = "https://management.api.umbrella.com/v1"
-        self.test_url2 = 'https://management.api.umbrella.com/v1/organizations/2372338/users'
 
-    def connect(self, params=None):
+    def connect(self, params):
+        """
+        Connection config params are supplied as a dict in
+        params or also accessible in self.parameters['key']
+
+        The following will setup the var to be accessed
+          self.blah = self.parameters['blah']
+        in the action and trigger files as:
+          blah = self.connection.blah
+        """
+        # TODO: Implement connection or 'pass' if no connection is necessary
         self.logger.info("Connect: Connecting...")
-        if params is None:
-            params = {}
-        self.logger.info("Connect: Connecting..")
-        key = params.get("api_key").get("secretKey")
-        if not key:
-            self.logger.error("Connection: connect: Empty key")
-            raise Exception("Connection: connect: Empty key")
 
     def test(self):
-        headers = {"Authorization": "Bearer " + self.key}
-        response = requests.get(self.test_url, headers=headers)
-
-        if response.status_code == 200:
-            return True
-        elif response.status_code == 401:
-            raise Exception("Error: Invalid API key credentials")
-        elif response.status_code == 404:
-            raise False
+        # TODO: Implement connection test
+        pass
