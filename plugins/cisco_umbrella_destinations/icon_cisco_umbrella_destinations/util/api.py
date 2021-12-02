@@ -7,11 +7,13 @@ from typing import Optional
 
 
 class CiscoUmbrellaManagementAPI:
-    def __init__(self, api_key: str, api_secret: str, organization_id: str, logger: Logger):
+    def __init__(self, api_key: str, api_secret: str, organization_id: int, destination_list_id: int, payload: dict ,logger: Logger):
         self.url = "https://management.api.umbrella.com/v1/"
-        self.api_secret = api_secret
         self.api_key = api_key
+        self.api_secret = api_secret
         self.organization_id = organization_id
+        self.destination_list_id = destination_list_id
+        self.payload = payload
         self.logger = logger
 
     # def destinations_most_recent_request(self, domain: str) -> dict:
@@ -21,11 +23,31 @@ class CiscoUmbrellaManagementAPI:
     #         {"limit": 500},
     #     )
 
-    def getdestinationlists(self) -> dict:
+    def get_destination_lists(self) -> dict:
         return self._call_api(
             "GET",
             f"organizations/{self.organization_id}/destinationlists",
             {"limit": 500}
+        )
+
+    def create_destination_list(self, params={}, data={}) -> dict:
+        params['organization_id'] = self.organization_id
+        return self._call_api(
+            "POST",
+            f"organizations/{self.organization_id}/destinationlists",
+            None,
+            {"payload": data},
+        )
+
+    def create_destinations(self, params={}, data={}) -> dict:
+        params['organizationId'] = self.organization_id
+        params['destinationListId'] = self.destination_list_id
+        data['payload'] = self.payload
+        return self._call_api(
+            "POST",
+            f"organizations/{self.organization_id}/destinationlists/{self.destination_list_id}/destinations",
+            None,
+            {"payload": data},
         )
 
 
