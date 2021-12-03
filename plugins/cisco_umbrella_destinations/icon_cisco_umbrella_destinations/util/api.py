@@ -7,35 +7,38 @@ from typing import Optional
 
 
 class CiscoUmbrellaManagementAPI:
-    def __init__(self, api_key: str, api_secret: str, organization_id: int, destination_list_id: int, payload: dict ,logger: Logger):
+    def __init__(self,
+                 api_key: str,
+                 api_secret: str,
+                 organization_id: int,
+                 destination_list_id: int,
+                 payload: dict,
+                 headers: dict,
+                 logger: Logger):
+
         self.url = "https://management.api.umbrella.com/v1/"
         self.api_key = api_key
         self.api_secret = api_secret
         self.organization_id = organization_id
         self.destination_list_id = destination_list_id
         self.payload = payload
+        self.headers = headers
         self.logger = logger
-
-    # def destinations_most_recent_request(self, domain: str) -> dict:
-    #     return self._call_api(
-    #         "GET",
-    #         f"organizations/{self.organization_id}/destinations/{domain}/activity",
-    #         {"limit": 500},
-    #     )
 
     def get_destination_lists(self) -> dict:
         return self._call_api(
             "GET",
             f"organizations/{self.organization_id}/destinationlists",
-            {"limit": 500}
+            {"headers": self.headers}
         )
 
     def create_destination_list(self, params={}, data={}) -> dict:
         params['organization_id'] = self.organization_id
+        data['payload'] = self.payload
         return self._call_api(
             "POST",
             f"organizations/{self.organization_id}/destinationlists",
-            None,
+            {"headers": self.headers},
             {"payload": data},
         )
 
@@ -46,17 +49,17 @@ class CiscoUmbrellaManagementAPI:
         return self._call_api(
             "POST",
             f"organizations/{self.organization_id}/destinationlists/{self.destination_list_id}/destinations",
-            None,
+            {"headers": self.headers},
             {"payload": data},
         )
 
-
     def _call_api(
-        self,
-        method: str,
-        path: str,
-        json_data: Optional[dict] = None,
-        params: Optional[dict] = None,
+            self,
+            method: str,
+            path: str,
+            headers: dict,
+            json_data: Optional[dict] = None,
+            params: Optional[dict] = None,
     ) -> dict:
         response = {"text": ""}
 
@@ -65,6 +68,7 @@ class CiscoUmbrellaManagementAPI:
                 method,
                 self.url + path,
                 json=json_data,
+                headers=headers,
                 params=params,
                 auth=HTTPBasicAuth(self.api_key, self.api_secret),
             )
