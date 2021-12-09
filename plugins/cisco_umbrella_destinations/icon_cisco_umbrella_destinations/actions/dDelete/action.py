@@ -13,5 +13,9 @@ class DDelete(insightconnect_plugin_runtime.Action):
                 output=DDeleteOutput())
 
     def run(self, params={}):
-        # TODO: Implement run function
+        orgId = params.get(Input.ORGANIZATIONID)
+        destinationlistId = params.get(Input.DESTINATIONLISTID)
+        payload = params.get(Input.PAYLOAD)
+
+
         return {}
