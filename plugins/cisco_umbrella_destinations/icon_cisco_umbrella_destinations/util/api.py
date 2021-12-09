@@ -12,64 +12,68 @@ class CiscoUmbrellaManagementAPI:
                  api_secret: str,
                  organization_id: int,
                  destination_list_id: int,
-                 payload: dict,
-                 headers: dict,
-                 logger: Logger):
+                 logger: Logger
+                 ):
 
         self.url = "https://management.api.umbrella.com/v1/"
         self.api_key = api_key
         self.api_secret = api_secret
         self.organization_id = organization_id
         self.destination_list_id = destination_list_id
-        self.payload = payload
-        self.headers = headers
         self.logger = logger
 
     def get_destination_lists(self) -> dict:
         return self._call_api(
             "GET",
             f"organizations/{self.organization_id}/destinationlists",
-            {"headers": self.headers}
+            {"limit": 500}
         )
 
-    def create_destination_list(self, params={}, data={}) -> dict:
-        params['organization_id'] = self.organization_id
-        data['payload'] = self.payload
+    def create_destination_list(self, data: dict) -> dict:
         return self._call_api(
             "POST",
             f"organizations/{self.organization_id}/destinationlists",
-            {"headers": self.headers},
-            {"payload": data},
+            None,
+            None,
+            data=data
         )
 
-    def create_destinations(self, params={}, data={}) -> dict:
-        params['organizationId'] = self.organization_id
-        params['destinationListId'] = self.destination_list_id
-        data['payload'] = self.payload
+    def create_destinations(self, data: dict) -> dict:
         return self._call_api(
             "POST",
             f"organizations/{self.organization_id}/destinationlists/{self.destination_list_id}/destinations",
-            {"headers": self.headers},
-            {"payload": data},
+            None,
+            None,
+            data=data
         )
 
     def _call_api(
             self,
+            # method -> GET/POST/etc
             method: str,
+            # path -> url
             path: str,
-            headers: dict,
+            # json_data -> Json to send in body
             json_data: Optional[dict] = None,
+            # Params -> Query String
             params: Optional[dict] = None,
+            # data(payload) -> dict in body
+            data: Optional[dict] = None,
     ) -> dict:
         response = {"text": ""}
+        headers = {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+        }
 
         try:
             response = requests.request(
                 method,
                 self.url + path,
                 json=json_data,
-                headers=headers,
                 params=params,
+                data=json.dumps(data),
+                headers=headers,
                 auth=HTTPBasicAuth(self.api_key, self.api_secret),
             )
 
