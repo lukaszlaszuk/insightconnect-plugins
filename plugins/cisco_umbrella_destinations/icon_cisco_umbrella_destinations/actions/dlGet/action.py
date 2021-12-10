@@ -13,5 +13,11 @@ class DlGet(insightconnect_plugin_runtime.Action):
                 output=DlGetOutput())
 
     def run(self, params={}):
-        # TODO: Implement run function
-        return {}
+        orgid = params.get(Input.ORGANIZATIONID)
+        dstid = params.get(Input.DESTINATIONLISTID)
+        if orgid and dstid:
+            return {
+                Output.SUCCESS: self.connection.client.get_destination_list()
+            }
+        else:
+            raise Exception("No organization ID AND destinationList ID provided")

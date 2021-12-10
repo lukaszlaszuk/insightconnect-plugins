@@ -12,7 +12,7 @@ class CiscoUmbrellaManagementAPI:
                  api_secret: str,
                  organization_id: int,
                  destination_list_id: int,
-                 # logger: Logger
+                 logger: Logger
                  ):
 
         self.url = "https://management.api.umbrella.com/v1/"
@@ -20,13 +20,19 @@ class CiscoUmbrellaManagementAPI:
         self.api_secret = api_secret
         self.organization_id = organization_id
         self.destination_list_id = destination_list_id
-        # self.logger = logger
+        self.logger = logger
 
     def get_destination_lists(self) -> dict:
         return self._call_api(
             "GET",
             f"organizations/{self.organization_id}/destinationlists",
             {"limit": 500}
+        )
+
+    def get_destination_list(self) -> dict:
+        return self._call_api(
+            "GET",
+            f"organizations/{self.organization_id}/destinationlists/{self.destination_list_id}"
         )
 
     def create_destination_list(self, data: dict) -> dict:
