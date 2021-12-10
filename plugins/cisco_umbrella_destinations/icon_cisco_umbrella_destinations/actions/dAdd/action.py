@@ -28,11 +28,7 @@ class DAdd(insightconnect_plugin_runtime.Action):
             destinations.append(i)
 
         try:
-            dictIds = self.connection.client.create_destinations(destinations)
+            return {Output.SUCCESS: self.connection.client.create_destinations(destinations)}
         except Exception:
             self.logger.error("AddDestination: run: Problem with request")
             raise Exception("AddDestination: run: Problem with request")
-
-
-        # return {Output.SUCCESS: self.connection.client.create_destinations(destinations)}
-        # return {"success": "Destination successfully added!"}
