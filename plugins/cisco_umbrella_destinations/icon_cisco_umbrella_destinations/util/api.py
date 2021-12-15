@@ -10,9 +10,9 @@ class CiscoUmbrellaManagementAPI:
     def __init__(self,
                  api_key: str,
                  api_secret: str,
-                 organization_id: int,
-                 destination_list_id: int,
-                 logger: Logger
+                 organization_id: str,
+                 destination_list_id: int = Optional,
+                 logger: Logger = Optional,
                  ):
 
         self.url = "https://management.api.umbrella.com/v1/"
@@ -26,7 +26,9 @@ class CiscoUmbrellaManagementAPI:
         return self._call_api(
             "GET",
             f"organizations/{self.organization_id}/destinationlists",
-            {"limit": 500}
+            {"limit": 500},
+            None,
+            None
         )
 
     def get_destination_list(self) -> dict:
@@ -102,5 +104,5 @@ class CiscoUmbrellaManagementAPI:
             self.logger.info(f"Invalid JSON: {e}")
             raise PluginException(preset=PluginException.Preset.INVALID_JSON, data=response.text)
         except requests.exceptions.HTTPError as e:
-            self.logger.info(f"Call to Cisco Umbrella Reporting API failed: {e}")
+            self.logger.info(f"Call to Cisco Umbrella Management API failed: {e}")
             raise PluginException(preset=PluginException.Preset.UNKNOWN, data=response.text)
