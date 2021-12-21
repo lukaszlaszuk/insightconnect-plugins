@@ -25,10 +25,13 @@ class DAdd(insightconnect_plugin_runtime.Action):
             comment = i.get('comment')
             if comment:
                 i['comment'] = comment
+            else:
+                i['comment'] = None
+            # This results in a dictionary within a list
             destinations.append(i)
 
         try:
-            return {Output.SUCCESS: self.connection.client.create_destinations(destinations)}
+            return [{Output.SUCCESS: self.connection.client.create_destinations(destinations)}]
         except Exception:
             self.logger.error("AddDestination: run: Problem with request")
             raise Exception("AddDestination: run: Problem with request")

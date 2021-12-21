@@ -13,5 +13,4 @@ class DGet(insightconnect_plugin_runtime.Action):
                 output=DGetOutput())
 
     def run(self, params={}):
-        # TODO: Implement run function
-        return {}
+        return {Output.SUCCESS: self.connection.client.get_destinations()}

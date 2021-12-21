@@ -4,6 +4,7 @@ import json
 
 
 class Input:
+    DESTINATION_LIST_ID = "destination_list_id"
     API_KEY = "api_key"
     API_SECRET = "api_secret"
     ORGANIZATION_ID = "organization_id"
@@ -28,11 +29,17 @@ class ConnectionSchema(insightconnect_plugin_runtime.Input):
       "order": 2
     },
     "organization_id": {
-      "type": "string",
+      "type": "integer",
       "title": "Organization ID",
       "description": "ID of your Cisco Umbrella organization",
       "order": 3
-    }
+    },
+    "destination_list_id": {
+      "type": "integer",
+      "title": "Destination List ID",
+      "description": "ID for the destination list",
+      "order": 4
+    }   
   },
   "required": [
     "api_key",

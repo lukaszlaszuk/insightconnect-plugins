@@ -45,7 +45,7 @@ class DlGetAllOutput(insightconnect_plugin_runtime.Output):
   "title": "Variables",
   "properties": {
     "success": {
-      "type": "array",
+      "type": "object",
       "title": "Success",
       "items": {
         "$ref": "#/definitions/dlCollection"
@@ -58,7 +58,7 @@ class DlGetAllOutput(insightconnect_plugin_runtime.Output):
   ],
   "definitions": {
     "dlCollection": {
-      "type": "object",
+      "type": "array",
       "title": "dlCollection",
       "properties": {
         "access": {
@@ -98,7 +98,7 @@ class DlGetAllOutput(insightconnect_plugin_runtime.Output):
           "order": 10
         },
         "meta": {
-          "type": "array",
+          "type": "object",
           "title": "Meta Data",
           "description": "None",
           "items": {
@@ -145,7 +145,7 @@ class DlGetAllOutput(insightconnect_plugin_runtime.Output):
       ],
       "definitions": {
         "meta": {
-          "type": "object",
+          "type": "array",
           "title": "meta",
           "properties": {
             "destinationCount": {
@@ -177,7 +177,7 @@ class DlGetAllOutput(insightconnect_plugin_runtime.Output):
       }
     },
     "meta": {
-      "type": "object",
+      "type": "array",
       "title": "meta",
       "properties": {
         "destinationCount": {

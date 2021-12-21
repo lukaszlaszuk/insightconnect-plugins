@@ -11,7 +11,7 @@ class CiscoUmbrellaManagementAPI:
                  api_key: str,
                  api_secret: str,
                  organization_id: int,
-                 destination_list_id: int,
+                 destination_list_id: Optional[int],
                  # logger: Logger
                  ):
 
@@ -157,5 +157,5 @@ class CiscoUmbrellaManagementAPI:
             self.logger.info(f"Invalid JSON: {e}")
             raise PluginException(preset=PluginException.Preset.INVALID_JSON, data=response.text)
         except requests.exceptions.HTTPError as e:
-            self.logger.info(f"Call to Cisco Umbrella Reporting API failed: {e}")
+            self.logger.info(f"Call to Cisco Umbrella Management API failed: {e}")
             raise PluginException(preset=PluginException.Preset.UNKNOWN, data=response.text)

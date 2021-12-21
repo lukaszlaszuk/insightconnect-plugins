@@ -11,10 +11,11 @@ class Input:
     DESTINATIONLISTID = "destinationListId"
     ORGANIZATIONID = "organizationId"
     PAYLOAD = "payload"
-    
+
 
 class Output:
     pass
+
 
 class DDeleteInput(insightconnect_plugin_runtime.Input):
     schema = json.loads("""
@@ -51,7 +52,7 @@ class DDeleteInput(insightconnect_plugin_runtime.Input):
   ],
   "definitions": {
     "destinationsIdsList": {
-      "type": "object",
+      "type": "integer",
       "title": "destinationsIdsList",
       "properties": {
         "id": {

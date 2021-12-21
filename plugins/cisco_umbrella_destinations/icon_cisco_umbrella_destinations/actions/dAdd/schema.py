@@ -83,7 +83,7 @@ class DAddInput(insightconnect_plugin_runtime.Input):
 class DAddOutput(insightconnect_plugin_runtime.Output):
     schema = json.loads("""
    {
-  "type": "object",
+  "type": "array",
   "title": "Variables",
   "properties": {
     "success": {
@@ -100,7 +100,7 @@ class DAddOutput(insightconnect_plugin_runtime.Output):
   ],
   "definitions": {
     "dResponse": {
-      "type": "object",
+      "type": "array",
       "title": "dResponse",
       "properties": {
         "access": {

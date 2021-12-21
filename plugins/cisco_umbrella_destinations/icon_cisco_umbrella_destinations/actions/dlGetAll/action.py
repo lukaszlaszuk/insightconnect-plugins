@@ -12,11 +12,11 @@ class DlGetAll(insightconnect_plugin_runtime.Action):
                 input=DlGetAllInput(),
                 output=DlGetAllOutput())
 
-    def run(self, params={}):
+    def run(self, params):
         orgid = params.get(Input.ORGANIZATIONID)
         if orgid:
-            return {
+            return [{
                 Output.SUCCESS: self.connection.client.get_destination_lists()
-            }
+            }]
         else:
             raise Exception("No organization id provided")
