@@ -15,8 +15,10 @@ class DDelete(insightconnect_plugin_runtime.Action):
             output=DDeleteOutput())
 
     def run(self, params={}):
-        # unhashable type: 'dict'
+        # Careful because this works but only because our
+        # payload is double wrapped [[ x, y ]]
+        # If it is single wrapped you will get type error
 
         payload = params.get(Input.PAYLOAD)
-        return {self.connection.client.delete_destinations(data=payload)}
+        return self.connection.client.delete_destinations(data=payload)
 

@@ -93,7 +93,7 @@ class CiscoUmbrellaManagementAPI:
 
     # DELETE list of destinations from destination list
     # https://developer.cisco.com/docs/cloud-security/#!delete-destinations
-    def delete_destinations(self, data: dict) -> dict:
+    def delete_destinations(self, data) -> dict:
         return self._call_api(
             "DELETE",
             f"organizations/{self.organization_id}/destinationlists/{self.destination_list_id}/destinations/remove",
@@ -113,7 +113,7 @@ class CiscoUmbrellaManagementAPI:
             # Params -> Query (Params) String
             params: Optional[dict] = None,
             # data(payload) -> dict in body
-            data: Optional[dict] = None,
+            data: Optional = None,
     ) -> dict:
         # What does 'response' do?
         # response = {"text": ""}

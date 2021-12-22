@@ -52,7 +52,7 @@ class DDeleteInput(insightconnect_plugin_runtime.Input):
   ],
   "definitions": {
     "destinationsIdsList": {
-      "type": "integer",
+      "type": "array",
       "title": "destinationsIdsList",
       "properties": {
         "id": {
